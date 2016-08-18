@@ -74,6 +74,10 @@ class CommandReporter(object):
         buf = TemporaryFile()
         start = time()
 
+        # Print something on stdout if raven gives an error
+        import logging
+        logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s")
+
         exit_status = call(self.command, stdout=buf, stderr=buf, shell=True)
         
         if exit_status > 0:
