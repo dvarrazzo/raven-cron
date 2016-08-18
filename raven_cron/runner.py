@@ -65,6 +65,9 @@ class CommandReporter(object):
     def __init__(self, cmd, dsn):
         if len(cmd) <= 1:
             cmd = cmd[0]
+            self.shell = True
+        else:
+            self.shell = False
 
         self.dsn = dsn
         self.command = cmd
@@ -74,7 +77,7 @@ class CommandReporter(object):
         buf = TemporaryFile()
         start = time()
 
-        exit_status = call(self.command, stdout=buf, stderr=buf, shell=True)
+        exit_status = call(self.command, stdout=buf, stderr=buf, shell=self.shell)
         
         if exit_status > 0:
             elapsed = int((time() - start) * 1000)
