@@ -99,7 +99,7 @@ class CommandReporter(object):
         message="Command \"%s\" failed" % (self.command,)
 
         if self.client is None:
-            self.client = Client(dsn=self.dsn)
+            self.client = Client(dsn=self.dsn, string_max_length=MAX_MESSAGE_SIZE)
 
         self.client.captureMessage(
             message,
