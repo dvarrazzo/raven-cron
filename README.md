@@ -38,6 +38,10 @@ SENTRY_DSN=https://<your_key>:<your_secret>@app.getsentry.com/<your_project_id>
 @reboot raven-cron ./my-process
 ```
 
+Use `--` if the script takes options which may confuse `raven-cron`:
+
+    raven-cron -- ./my-process -x -y -z
+
 Misc
 ----
 
